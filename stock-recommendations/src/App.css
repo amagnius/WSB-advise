@@ -3,6 +3,9 @@
 .App {
   font-family: Arial, sans-serif;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
@@ -11,9 +14,17 @@
   padding: 1rem;
 }
 
-.stocks-container {
+.stock-lists {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
+  flex: 1;
   padding: 1rem;
+}
+
+@media (max-width: 767px) {
+  .stock-lists {
+    flex-direction: column;
+  }
 }
