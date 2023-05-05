@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/WSB-advise/static/css/main.f03facff.css",
+    "main.js": "/WSB-advise/static/js/main.0f7c9cb3.js",
+    "static/js/787.efbb7e0b.chunk.js": "/WSB-advise/static/js/787.efbb7e0b.chunk.js",
+    "index.html": "/WSB-advise/index.html",
+    "main.f03facff.css.map": "/WSB-advise/static/css/main.f03facff.css.map",
+    "main.0f7c9cb3.js.map": "/WSB-advise/static/js/main.0f7c9cb3.js.map",
+    "787.efbb7e0b.chunk.js.map": "/WSB-advise/static/js/787.efbb7e0b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f03facff.css",
+    "static/js/main.0f7c9cb3.js"
+  ]
+}
