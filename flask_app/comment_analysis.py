@@ -21,6 +21,9 @@ def readTickersToDictKeys(filename):
     
     return stockRatings
 
+# Initialize dictionary contain all stock tickers as a global variable
+stockRatings = readTickersToDictKeys("tickers.txt")
+
 def getComments(subreddit, numComments):
     # Create an instance of the subreddit
     subreddit = reddit.subreddit(subreddit)
@@ -31,4 +34,10 @@ def getComments(subreddit, numComments):
     return recent_comments
 
 def analyzeComments(commentList):
+    
+    for comment in commentList:
+        words = comment.upper().split()
+        for word in words:
+            if word in stockRatings:
+                # Sentiment analysis
 
