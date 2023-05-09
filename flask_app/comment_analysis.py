@@ -51,7 +51,10 @@ def analyze_comments(comment_list):
                 num_upvotes = comment.score
                 total_score = sentiment_score * (1 + num_upvotes)
                 if total_score != 0:
-                    stock_ratings[word] += total_score
+                    if word in stock_ratings:
+                        stock_ratings[word] += total_score
+                    else:
+                        stock_ratings[word] = total_score
                 # Go to the next comment   
                 break
     
