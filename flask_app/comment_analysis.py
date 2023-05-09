@@ -1,4 +1,5 @@
 import praw
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 reddit = praw.Reddit(
     client_id="ca67SLBHFy2Am7kPZ-TdKA",
@@ -8,7 +9,7 @@ reddit = praw.Reddit(
 
 def readTickersToDictKeys(filename):
     # Initialize an empty dictionary
-    stockRatings = {}
+    stock_tickers = {}
 
     # Read the text file line by line
     with open(filename, 'r') as file:
@@ -17,12 +18,15 @@ def readTickersToDictKeys(filename):
             key = line.strip()
 
             # Add the key to the dictionary with a value of 0
-            stockRatings[key] = 0
+            stock_tickers[key] = 0
     
-    return stockRatings
+    return stock_tickers
 
 # Initialize dictionary contain all stock tickers as a global variable
-stockRatings = readTickersToDictKeys("tickers.txt")
+stock_tickers = readTickersToDictKeys("tickers.txt")
+
+# Create an instance of a sentiment analyzer as a global variable
+analyzer = SentimentIntensityAnalyzer()
 
 def getComments(subreddit, numComments):
     # Create an instance of the subreddit
@@ -34,10 +38,24 @@ def getComments(subreddit, numComments):
     return recent_comments
 
 def analyzeComments(commentList):
-    
-    for comment in commentList:
-        words = comment.upper().split()
-        for word in words:
-            if word in stockRatings:
-                # Sentiment analysis
 
+    stockRatings = {}
+
+    # Iterate through comments
+    for comment in commentList:
+        words = comment.body.upper().split()
+        for word in words:
+            if word in stock_tickers:
+                # Perform Sentiment analysis
+                sentiment_score = analyzer.polarity_scores(comment.body)['compound']
+                num_upvotes = comment.score
+                total_score = sentiment_score * (1 + num_upvotes)
+                if total_score != 0:
+                    stockRatings[word] += total_score
+                # Go to the next comment   
+                break
+    
+    # Sort the dictionary by values and store the result as a list of tuples
+    sorted_by_values = sorted(stockRatings.items(), key=lambda item: item[1])
+
+    return sorted_by_values
