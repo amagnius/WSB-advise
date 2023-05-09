@@ -7,7 +7,7 @@ reddit = praw.Reddit(
     user_agent="website:https://amagnius.github.io/WSB-advise/:v1 (by u/Dazzling-Pollution-6)",
 )
 
-def readTickersToDictKeys(filename):
+def read_tickers_to_dict_keys(filename):
     # Initialize an empty dictionary
     stock_tickers = {}
 
@@ -23,26 +23,26 @@ def readTickersToDictKeys(filename):
     return stock_tickers
 
 # Initialize dictionary contain all stock tickers as a global variable
-stock_tickers = readTickersToDictKeys("tickers.txt")
+stock_tickers = read_tickers_to_dict_keys("tickers.txt")
 
 # Create an instance of a sentiment analyzer as a global variable
 analyzer = SentimentIntensityAnalyzer()
 
-def getComments(subreddit, numComments):
+def get_comments(subreddit, num_comments):
     # Create an instance of the subreddit
     subreddit = reddit.subreddit(subreddit)
 
     # Read in latest comments to a list
-    recent_comments = subreddit.comments(limit=numComments)
+    recent_comments = subreddit.comments(limit=num_comments)
 
     return recent_comments
 
-def analyzeComments(commentList):
+def analyze_comments(comment_list):
 
-    stockRatings = {}
+    stock_ratings = {}
 
     # Iterate through comments
-    for comment in commentList:
+    for comment in comment_list:
         words = comment.body.upper().split()
         for word in words:
             if word in stock_tickers:
@@ -51,11 +51,11 @@ def analyzeComments(commentList):
                 num_upvotes = comment.score
                 total_score = sentiment_score * (1 + num_upvotes)
                 if total_score != 0:
-                    stockRatings[word] += total_score
+                    stock_ratings[word] += total_score
                 # Go to the next comment   
                 break
     
     # Sort the dictionary by values and store the result as a list of tuples
-    sorted_by_values = sorted(stockRatings.items(), key=lambda item: item[1])
+    sorted_by_values = sorted(stock_ratings.items(), key=lambda item: item[1])
 
     return sorted_by_values
