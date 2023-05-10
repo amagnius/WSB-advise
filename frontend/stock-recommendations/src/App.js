@@ -13,8 +13,7 @@ const App = () => {
 
   const fetchStockRecommendations = async () => {
     try {
-      // Replace with your Java backend's REST API URL
-      const apiUrl = 'https://your-java-backend-url/api/recommendations';
+      const apiUrl = 'https://wsb-advise.herokuapp.com/api/stock_recommendations';
       const response = await fetch(apiUrl);
       const data = await response.json();
       setRecommendations(data);
