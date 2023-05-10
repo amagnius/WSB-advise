@@ -3,11 +3,11 @@
 import React from 'react';
 import './Stock.css';
 
-const Stock = ({ name, symbol, action }) => {
+const Stock = ({ ticker, action }) => {
   return (
     <div className="stock">
-      <h3>{name}</h3>
-      <p>Symbol: {symbol}</p>
+      <h3>{ticker}</h3>
+      <p>Symbol: {ticker}</p>
       <p>Action: {action}</p>
     </div>
   );

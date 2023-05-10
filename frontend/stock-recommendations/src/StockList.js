@@ -1,4 +1,5 @@
 import React from 'react';
+import Stock from './Stock';
 
 const StockList = ({ title, stocks }) => {
   return (
@@ -13,15 +14,14 @@ const StockList = ({ title, stocks }) => {
         </thead>
         <tbody>
           {stocks.map((stock, index) => (
-            <tr key={index}>
-              <td>{stock.symbol}</td>
-              <td>{stock.recommendation}</td>
-            </tr>
+            <Stock key={index} ticker={stock.ticker} action={stock.action} />
           ))}
         </tbody>
       </table>
     </div>
   );
 };
+          
 
 export default StockList;
+
