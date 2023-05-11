@@ -65,7 +65,7 @@ def analyze_comments(comment_list):
 
 
 def fetch_stock_recommendations():
-    comment_list = get_comments("wallstreetbets", 500)
+    comment_list = get_comments("wallstreetbets", 1000)
     sorted_by_values = analyze_comments(comment_list)
 
     top_3_buy = []
