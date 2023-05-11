@@ -33,7 +33,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Today's Stock Recommendations</h1>
+        <h1>r/WallStreetBets Roulette: Today's WSB Gamble</h1>
       </header>
       <main className="stock-lists">
         <StockList title="Buy" stocks={buyRecommendations} />

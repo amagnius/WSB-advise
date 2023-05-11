@@ -4,24 +4,12 @@ import Stock from './Stock';
 const StockList = ({ title, stocks }) => {
   return (
     <div className="stock-list">
-      <h2>{title} Recommendations</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Stock Symbol</th>
-            <th>Recommendation</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stocks.map((stock, index) => (
-            <Stock key={index} ticker={stock.ticker} action={stock.action} />
-          ))}
-        </tbody>
-      </table>
+      <h2 style={{ fontSize: '2rem' }}>{title}</h2> {}
+      {stocks.map((stock, index) => (
+        <Stock key={index} ticker={stock.ticker} action={stock.action} />
+      ))}
     </div>
   );
 };
-          
 
 export default StockList;
-
